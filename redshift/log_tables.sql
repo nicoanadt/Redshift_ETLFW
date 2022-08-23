@@ -13,12 +13,11 @@ load_key int,
 last_load_businessdate timestamp
 );
 /*please update the below statement with appropriate values from your environment*/
-insert into $$schema.etlfw_load_businessdate values ('fed_postgres_tpc_ds.web_sales_test_load', 1, '2002-12-31');
-insert into $$schema.etlfw_load_businessdate values ('fed_postgres_tpc_ds.date_dim', 1, '1900-01-01');
+insert into $$schema.etlfw_load_businessdate values ('etlfw_pg.tb1', 1, '2000-01-01');
 
 
 /*
- Table :- etlfw_rs_load_details
+ Table :- etlfw_log_details
  Description:- table where actions are logged
  batch_timeT:- imestamp for this batch. Used to timestamp the log
  source_table:- Postgres table to be extracted. Format <schema_name>.<table_name> Schema name should be the redshift external schema
@@ -29,8 +28,8 @@ insert into $$schema.etlfw_load_businessdate values ('fed_postgres_tpc_ds.date_d
  row_count:-  Total no of rows inserted.deleted.updated
  :-
  */
-drop table if exists $$schema.etlfw_rs_load_details;
-CREATE TABLE $$schema.etlfw_rs_load_details (
+drop table if exists $$schema.etlfw_log_details;
+CREATE TABLE $$schema.etlfw_log_details (
                            batch_time   TIMESTAMP
                          , source_table VARCHAR
                          , target_table VARCHAR
