@@ -3,7 +3,7 @@
   "States": {
     "Validateloadactivation": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_check_load_active_status",
+      "Resource": "arn:aws:lambda:[aws_region]:[aws_account_no]:function:etlfw_rs_check_load_active_status",
       "Next": "Checkactivestatus",
       "ResultPath": "$.details"
     },
@@ -26,7 +26,7 @@
     },
     "Fetchactivetables": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_fetch_active_tables",
+      "Resource": "arn:aws:lambda:[aws_region]:[aws_account_no]:function:etlfw_rs_fetch_active_tables",
       "Next": "ProcessAlltables",
       "ResultPath": "$.items"
     },
