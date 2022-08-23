@@ -6,8 +6,8 @@
  load_frequency:- frequency of the extraction e.g. short-batch (10/15/30/60 mins interval), daily etc)
  active_flag:- Y or N whether this load type to be executed. For e.g set this flag to N during maintanance or manual/admin activities
  */
-drop table if exists etlfw_rs.etlfw_load_tp_master;
-create table etlfw_rs.etlfw_load_tp_master
+drop table if exists $$schema.etlfw_load_tp_master;
+create table $$schema.etlfw_load_tp_master
 (
 load_key int,
 load_tp varchar(20),
@@ -15,8 +15,8 @@ load_frequency varchar(20),
 active_flag varchar(2)
 );
 /*please update the below statement with appropriate values from your environment*/
-insert into etlfw_rs.etlfw_load_tp_master values(1,'incremental','short_batch','Y')
-insert into etlfw_rs.etlfw_load_tp_master values(2,'full','daily','Y')
+insert into $$schema.etlfw_load_tp_master values(1,'incremental','short_batch','Y')
+insert into $$schema.etlfw_load_tp_master values(2,'full','daily','Y')
 /*
  Table :- load_details
  Description:- Stores granualr information about the extraction
@@ -27,8 +27,8 @@ insert into etlfw_rs.etlfw_load_tp_master values(2,'full','daily','Y')
  load_max_rows:- maximum number of rows that should be extracted in one batch
  active_flag:- Y or N whether the extraction for the source and target table to be executed. For e.g set this flag to N during maintanance or manual/admin activities
  */
-drop table if exists etlfw_rs.etlfw_load_details;
-create table etlfw_rs.etlfw_load_details
+drop table if exists $$schema.etlfw_load_details;
+create table $$schema.etlfw_load_details
 (
 src_tbl varchar(200),
 tgt_tbl varchar(200),
@@ -38,9 +38,9 @@ load_max_rows int,
 load_active_flag varchar(2)
 );
 /*please update the below statement with appropriate values from your environment*/
---insert into etlfw_rs.etlfw_load_details values ('fed_postgres_tpc_ds.web_sales_test_load', 'public.rs_stg_web_sales',1,'d_date',1000000000,'Y');
---insert into etlfw_rs.etlfw_load_details values ('fed_postgres_tpc_ds.date_dim', 'public.rs_stg_date_dim',1,'d_date',1000000000,'Y');
-insert into etlfw_rs.etlfw_load_details values ('etlfw_pg.tb1', 'etlfw_rs.tb1_rs',1,'update_date',1000000000,'Y');
+insert into $$schema.etlfw_load_details values ('fed_postgres_tpc_ds.web_sales_test_load', 'public.rs_stg_web_sales',1,'d_date',1000000000,'Y');
+insert into $$schema.etlfw_load_details values ('fed_postgres_tpc_ds.date_dim', 'public.rs_stg_date_dim',1,'d_date',1000000000,'Y');
+insert into $$schema.etlfw_load_details values ('etlfw_pg.tb1', 'etlfw_rs.tb1_rs',1,'update_date',1000000000,'Y');
 
 /*
  Table :- login_parameters
@@ -51,8 +51,8 @@ insert into etlfw_rs.etlfw_load_details values ('etlfw_pg.tb1', 'etlfw_rs.tb1_rs
  redshift_log_tbl:- Log table name in Redshift. This will be created in the Redshift deployment section
  redshift_businessdate_tbl:- Table in Redshift which stores the max of last modified record timestamp
  */
-drop table if exists etlfw_rs.etlfw_login_parameters;
-create table etlfw_rs.etlfw_login_parameters
+drop table if exists $$schema.etlfw_login_parameters;
+create table $$schema.etlfw_login_parameters
 (
 redshift_cluster_id varchar(200),
 redshift_user varchar(200),
@@ -61,5 +61,4 @@ redshift_log_tbl varchar(200),
 redshift_businessdate_tbl varchar(200)
 );
 /*please update the below statement with appropriate values from your environment*/
---insert into etlfw_rs.etlfw_login_parameters values ('redshift-cluster-2','awsuser','dev','public.etlfw_rs_table_load_details','public.etlfw_load_businessdate');
-insert into etlfw_rs.etlfw_login_parameters values ('lakehouse-redshift-cluster','rs_admin','dev','etlfw_rs.etlfw_rs_load_details','public.etlfw_rs.etlfw_load_businessdate');
+insert into $$schema.etlfw_login_parameters values ('redshift-cluster-2','awsuser','dev','dev.etlfw_rs.etlfw_log_details','dev.etlfw_rs.etlfw_load_businessdate');
