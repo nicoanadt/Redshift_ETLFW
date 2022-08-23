@@ -24,6 +24,7 @@ def post_process(meta, records):
     
     return return_value
 
+# Query and wait for result using Redshift Data API
 def query(sql, v_cluster_identifier, v_secret_arn, v_database_name):
     
     rsd = boto3.client('redshift-data')
