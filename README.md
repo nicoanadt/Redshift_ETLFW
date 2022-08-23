@@ -65,5 +65,6 @@ Deploy the 2 lambda functions.
   
 ## Done, you are good to go
   
-    
+Disclaimer:
+- This script is for proof of concept purpose and not to be deployed in production environment without further testing
 
