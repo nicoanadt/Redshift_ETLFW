@@ -21,9 +21,9 @@ Read the instructions in the scripts to replace the insert statements.
 ### 4. Deploy Lambda functions
 Deploy the 2 lambda functions.
 
-1. etlfw_rs_check_load_active_status - https://github.com/nicoanadt/Redshift_ETLFW/tree/main/lambda/etlfw_rs_check_load_active_status. Use the .py file in lambda function. Please ensure the following configurations are added.
+1. etlfw_rs_check_load_active_status - https://github.com/nicoanadt/Redshift_ETLFW/tree/main/lambda/etlfw_rs_check_load_active_status/lambda_function.py. Use the .py file in lambda function. Please ensure the following configurations are added.
 
-* Runtime settings -> Runtine - Python 3.8, Handler - lambda_function.lambda_handler, 
+* Runtime settings -> Runtime - Python 3.8, Handler - lambda_function.lambda_handler, 
 * Associate an IAM role that access to the secrets (steps 3) in Secret Manager and access to Redshift Data API
 * Under configurations set the following environment variable
             Key | Value
@@ -35,7 +35,7 @@ Deploy the 2 lambda functions.
 
 2. etlfw_rs_fetch_active_tables - https://github.com/nicoanadt/Redshift_ETLFW/blob/main/lambda/etlfw_rs_fetch_active_tables/lambda_function.py. Use the .py file in lambda function. Please ensure the following configurations are added.
 
-* Runtime settings -> Runtine - Python 3.8, Handler - lambda_function.lambda_handler, 
+* Runtime settings -> Runtime - Python 3.8, Handler - lambda_function.lambda_handler, 
 * Associate an IAM role that access to the secrets (steps 3) and access to Redshift Data API.
 * Under configurations set the following environment variable
             Key | Value
