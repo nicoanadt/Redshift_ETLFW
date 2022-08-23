@@ -5,16 +5,16 @@ ETL framework for Amazon Redshift using its Federated Query feature
 Please follow the below steps to deploy the framework
 
 ### 1. Deploy DDLs Redshift Control Tables
-Login to your Redshift database and Execute https://github.com/nicoanadt/Redshift_ETLFW/blob/main/redshift/control_tables.sql.
-Replace $$schema with the appropriate schema.
+* Login to your Redshift database and Execute https://github.com/nicoanadt/Redshift_ETLFW/blob/main/redshift/control_tables.sql.
+Replace `$$schema` with the appropriate schema.
 Read the instructions in the scripts to replace the insert statements.
 
-* Make sure you have an entry for each source table that you want to be extracted in the $$schema.etlfw_load_details table. This is a one time activity
+* Make sure you have an entry for each source table that you want to be extracted in the `$$schema.etlfw_load_details` table. This is a one time activity
 
 ### 2. Deploy DDLs Redshift Log Tables
-* DDL:- Login to your Redshift database and Execute https://github.com/nicoanadt/Redshift_ETLFW/blob/main/redshift/log_tables.sql. Replace $$schema with the schema of appropriate schema. Read the instructions in the scripts to replace the insert statements.
-* Make sure you have an entry for each source table and the last modified timestamp from the source table in the $$schema.etlfw_load_businessdate table. This is a one time activity. Going forward the jobs will keep updated the table with the latest modified timestamp.
-* Stored Procedure:- Login to your Redshift database and Execute https://github.com/nicoanadt/Redshift_ETLFW/blob/main/redshift/sp_sync_merge.sql. Replace $$schema with the appropriate schema.
+* DDL:- Login to your Redshift database and Execute https://github.com/nicoanadt/Redshift_ETLFW/blob/main/redshift/log_tables.sql. Replace `$$schema` with the schema of appropriate schema. Read the instructions in the scripts to replace the insert statements.
+* Make sure you have an entry for each source table and the last modified timestamp from the source table in the `$$schema.etlfw_load_businessdate` table. This is a one time activity. Going forward the jobs will keep updated the table with the latest modified timestamp.
+* Stored Procedure:- Login to your Redshift database and Execute https://github.com/nicoanadt/Redshift_ETLFW/blob/main/redshift/sp_sync_merge.sql. Replace `$$schema` with the appropriate schema.
 
 ### 3. Store PG and Redshift secrets in Secret Manager.
 
@@ -23,7 +23,7 @@ Deploy the 2 lambda functions.
 
 1. etlfw_rs_check_load_active_status - https://github.com/nicoanadt/Redshift_ETLFW/tree/main/lambda/etlfw_rs_check_load_active_status/lambda_function.py. Use the .py file in lambda function. Please ensure the following configurations are added.
 
-* Runtime settings -> Runtime - Python 3.8, Handler - lambda_function.lambda_handler, 
+* Runtime settings -> Runtime - `Python 3.8`, Handler - `lambda_function.lambda_handler`, 
 * Associate an IAM role that access to the secrets (steps 3) in Secret Manager and access to Redshift Data API
 * Under configurations set the following environment variable
             Key | Value
@@ -35,7 +35,7 @@ Deploy the 2 lambda functions.
 
 2. etlfw_rs_fetch_active_tables - https://github.com/nicoanadt/Redshift_ETLFW/blob/main/lambda/etlfw_rs_fetch_active_tables/lambda_function.py. Use the .py file in lambda function. Please ensure the following configurations are added.
 
-* Runtime settings -> Runtime - Python 3.8, Handler - lambda_function.lambda_handler, 
+* Runtime settings -> Runtime - `Python 3.8`, Handler - `lambda_function.lambda_handler`, 
 * Associate an IAM role that access to the secrets (steps 3) and access to Redshift Data API.
 * Under configurations set the following environment variable
             Key | Value
@@ -47,7 +47,7 @@ Deploy the 2 lambda functions.
 
 
 ### 4. Deploy Step functions and cloudwatch events to trigger the Step function
-1. Create an IAM role for Step Function. Associate the inline policy https://github.com/nicoanadt/Redshift_ETLFW/blob/main/step_functions/step_function_lambda_redshift-IAMPolicy.json. Replace the account no and aws region with appropriate values.
+1. Create an IAM role for Step Function. Associate the inline policy https://github.com/nicoanadt/Redshift_ETLFW/blob/main/step_functions/step_function_lambda_redshift-IAMPolicy.json. Replace the `[aws_account_no]`, `[aws_region]`, and `[cluster_identifier]` with appropriate values.
 
 2. Create a step function with the definition https://github.com/nicoanadt/Redshift_ETLFW/blob/main/step_functions/etlfw_stepfunction.json. Associate the IAM role you created in the previous step.
 
