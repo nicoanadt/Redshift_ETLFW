@@ -1,0 +1,46 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
+            "Resource": [
+                "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_fetch_active_tables:*",
+                "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_check_load_active_status:*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
+            "Resource": [
+                "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_fetch_active_tables",
+                "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_check_load_active_status"
+            ]
+        },
+        {
+            "Action": [
+                "redshift-data:ExecuteStatement",
+                "redshift-data:ListStatements",
+                "redshift-data:GetStatementResult",
+                "redshift-data:DescribeStatement"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "redshift:GetClusterCredentials"
+            ],
+            "Resource": [
+                "arn:aws:redshift:ap-southeast-1:130835040051:cluster:lakehouse-redshift-cluster",
+                "arn:aws:redshift:ap-southeast-1:130835040051:dbuser:lakehouse-redshift-cluster/*",
+                "arn:aws:redshift:ap-southeast-1:130835040051:dbname:lakehouse-redshift-cluster/*"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}
