@@ -15,8 +15,8 @@ load_frequency varchar(20),
 active_flag varchar(2)
 );
 /*please update the below statement with appropriate values from your environment*/
-insert into $$schema.etlfw_load_tp_master values(1,'incremental','short_batch','Y')
-insert into $$schema.etlfw_load_tp_master values(2,'full','daily','Y')
+insert into $$schema.etlfw_load_tp_master values(1,'incremental','short_batch','Y');
+insert into $$schema.etlfw_load_tp_master values(2,'full','daily','Y');
 /*
  Table :- load_details
  Description:- Stores granualr information about the extraction
@@ -38,8 +38,6 @@ load_max_rows int,
 load_active_flag varchar(2)
 );
 /*please update the below statement with appropriate values from your environment*/
-insert into $$schema.etlfw_load_details values ('fed_postgres_tpc_ds.web_sales_test_load', 'public.rs_stg_web_sales',1,'d_date',1000000000,'Y');
-insert into $$schema.etlfw_load_details values ('fed_postgres_tpc_ds.date_dim', 'public.rs_stg_date_dim',1,'d_date',1000000000,'Y');
 insert into $$schema.etlfw_load_details values ('etlfw_pg.tb1', 'etlfw_rs.tb1_rs',1,'update_date',1000000000,'Y');
 
 /*
