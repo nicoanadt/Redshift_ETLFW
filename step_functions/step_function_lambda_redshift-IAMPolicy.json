@@ -7,8 +7,8 @@
                 "lambda:InvokeFunction"
             ],
             "Resource": [
-                "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_fetch_active_tables:*",
-                "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_check_load_active_status:*"
+                "arn:aws:lambda:[aws_region]:[aws_account_no]:function:etlfw_rs_fetch_active_tables:*",
+                "arn:aws:lambda:[aws_region]:[aws_account_no]:function:etlfw_rs_check_load_active_status:*"
             ]
         },
         {
@@ -17,8 +17,8 @@
                 "lambda:InvokeFunction"
             ],
             "Resource": [
-                "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_fetch_active_tables",
-                "arn:aws:lambda:ap-southeast-1:130835040051:function:etlfw_rs_check_load_active_status"
+                "arn:aws:lambda:[aws_region]:[aws_account_no]:function:etlfw_rs_fetch_active_tables",
+                "arn:aws:lambda:[aws_region]:[aws_account_no]:function:etlfw_rs_check_load_active_status"
             ]
         },
         {
@@ -36,9 +36,9 @@
                 "redshift:GetClusterCredentials"
             ],
             "Resource": [
-                "arn:aws:redshift:ap-southeast-1:130835040051:cluster:lakehouse-redshift-cluster",
-                "arn:aws:redshift:ap-southeast-1:130835040051:dbuser:lakehouse-redshift-cluster/*",
-                "arn:aws:redshift:ap-southeast-1:130835040051:dbname:lakehouse-redshift-cluster/*"
+                "arn:aws:redshift:[aws_region]:[aws_account_no]:cluster:[cluster_identifier]",
+                "arn:aws:redshift:[aws_region]:[aws_account_no]:dbuser:[cluster_identifier]/*",
+                "arn:aws:redshift:[aws_region]:[aws_account_no]:dbname:[cluster_identifier]/*"
             ],
             "Effect": "Allow"
         }
